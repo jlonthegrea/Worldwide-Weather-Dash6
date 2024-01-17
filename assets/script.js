@@ -1,9 +1,10 @@
 var APIkey = "6f5c8c987926cb92d9f35b3ec647c7d9";
-var cityName = $('#cityName')[0].value;
+
 
 
 function getWeatherData() {
     var apiUrl ="https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "appid=6f5c8c987926cb92d9f35b3ec647c7d9";
+    var cityName = $('#cityName')[0].value;
 
     fetch(apiUrl).then(function(response) {
         if(response.ok){
