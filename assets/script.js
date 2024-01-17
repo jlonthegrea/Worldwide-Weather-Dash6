@@ -1,10 +1,11 @@
-var APIkey = "6f5c8c987926cb92d9f35b3ec647c7d9";
+var APIkey = "2ae0fed7d9cace10869d3b92643028e3";
 
 
 
 function getWeatherData() {
-    var apiUrl ="https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "appid=6f5c8c987926cb92d9f35b3ec647c7d9";
     var cityName = $('#cityName')[0].value;
+    var apiUrl ="https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=2ae0fed7d9cace10869d3b92643028e3";
+    
 
     fetch(apiUrl).then(function(response) {
         if(response.ok){
@@ -12,11 +13,13 @@ function getWeatherData() {
                 $("#cityName")[0].textContent = cityName + (dayjs().format("MM/DD/YYYY"));
                 $("#city-list").append(cityName);
 
-                const {lat, lon} = getWeatherData.coord;
+                
+                // const {lat, lon} = weatherData.coord;
+                
 
-                localStorage.setItem(cityName);
+                localStorage.setItem(cityName, cityName);
 
-                var apiUrl2 = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=6f5c8c987926cb92d9f35b3ec647c7d9";
+                var apiUrl2 = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=2ae0fed7d9cace10869d3b92643028e3";
 
                 fetch(apiUrl2).then(function(anotherResponse) {
                     if(anotherResponse.ok) {
@@ -29,7 +32,7 @@ function getWeatherData() {
             })
         } else {
             alert("Cannot find city.");
-            console.log(alert);
+            // console.log(alert);
         }
     })
 
