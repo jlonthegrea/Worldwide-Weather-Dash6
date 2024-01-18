@@ -37,6 +37,7 @@ function getForecast() {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data);
+                renderFutureWeather(data);
             })
         }
     })
