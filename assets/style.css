@@ -4,7 +4,7 @@ body {
     font-family: Arial,sans-serif;
 }
 main {
-    display; flex;
+    display: flex;
 }
 section {
     margin-top: 10px;
@@ -23,13 +23,13 @@ section {
     margin-top: 6px;
 }
 .card-body {
-    backgroud-color: blue;
+    background-color: grey;
 }
 .card-body .card-header {
     text-align: center;
 }
 .card-header {
-    background-color:red;
+    background-color: grey;
 }
 .container{
     display: inline;
@@ -46,7 +46,4 @@ section {
 }
 .forecast-panel {
     padding-top: 50px;
-}
-.current-conditions-panel {
-    
 }
