@@ -6,7 +6,6 @@ function getLatLon() {
     cityName = $('#cityName')[0].value;
 
     const apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&appid=2ae0fed7d9cace10869d3b92643028e3"
-
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -24,6 +23,7 @@ function getCurrentWeather(lat, lon) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
+                console.log(data);
                 renderCurrentWeather(data);
             })
         }
@@ -33,18 +33,10 @@ function getCurrentWeather(lat, lon) {
 function getForecast() {
 
     const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=2ae0fed7d9cace10869d3b92643028e3";
-
-
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data);
-
-
-                // $("#cityName")[0].textContent = cityName + (dayjs().format("MM/DD/YYYY"));
-                // $("#city-list").append(cityName);
-                // localStorage.setItem(cityName, cityName); Save coordinates in 2nd argument
-
             })
         }
     })
@@ -52,21 +44,18 @@ function getForecast() {
 
 }
 
-
 // Current Weather details
 function renderCurrentWeather(data) {
-    
 
-    $("#temperature").text ("Temp: " + data.main.temp + " Fahrenheit");
-    $("#wind-speed").text ("Wind Speed: " + data.main.humidity + "%");
-    $("#humidity").text ("Humidity: " + data.main.wind_speed + " MPH");
+    $("#city-name").text(cityName).val + dayjs().format("MM/DD/YYYY");
+    $("#temperature").text("Temp: " + data.main.temp + " Fahrenheit");
+    $("#wind-speed").text("Wind Speed: " + data.wind.speed + " MPH");
+    $("#humidity").text("Humidity: " + data.main.humidity + " %");
 }
 
 
-
-
 // Future Weather details for 5 day Forecast
-function getWeatherTmr(data) {
+function renderFutureWeather(data) {
 
 
     for (var i = 0; i < 5; i++) {
@@ -91,7 +80,7 @@ function getWeatherTmr(data) {
 // Submit button 
 $("#search-button").on("click", function (e) {
     e.preventDefault();
-
-    // getWeatherData();
     getLatLon();
+    getForecast();
 })
+
