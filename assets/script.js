@@ -34,10 +34,6 @@ function getCurrentWeather(lat, lon) {
 function getForecast() {
 
     const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=2ae0fed7d9cace10869d3b92643028e3";
-
-
-    // const apiUrl = "https://pro.openweathermap.org/data/2.5/forecast/climate?q=" + cityName + "&units=imperial&appid=2ae0fed7d9cace10869d3b92643028e3"
-
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -51,11 +47,12 @@ function getForecast() {
 
 // Render Weather details onto the page 
 function renderCurrentWeather(data) {
+    console.log(data);
 
-    $()
 
     $("#city-name").text(cityName).val 
     $("#date-now").text (dayjs().format("MM/DD/YYYY"));
+    $("#currentIcon").attr('src', `https://openweathermap.org/img/w/${data.weather[0].icon}.png`);
     $("#temperature").text("Temp: " + data.main.temp + " Fahrenheit");
     $("#wind-speed").text("Wind Speed: " + data.wind.speed + " MPH");
     $("#humidity").text("Humidity: " + data.main.humidity + " %");
@@ -64,7 +61,7 @@ function renderCurrentWeather(data) {
 
 // Render Future Weather details for 5 day Forecast onto the page 
 function renderFutureWeather(data) {
-console.log(data);
+// console.log(data);
 
 var iconUrl = "https://openweathermap.org/img/w/"
 
