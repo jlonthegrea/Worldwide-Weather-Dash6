@@ -59,16 +59,26 @@ function renderCurrentWeather(data) {
 function renderFutureWeather(data) {
     console.log(data);
 
-    
-
     // $("#img-0").src (data.list[0].weather[0]);
-    $("#day-0").text(data.list[0].dt_txt);
-    $("#temp-0").text("Temp: " + data.list[0].main.temp + " Fahrenheit");
-    $("#wind-speed-0").text("Wind Speed: " + data.list[0].wind.speed + " MPH");
-    $("#hum-0").text("Humidity: " + data.list[0].main.humidity + " %");
+    // $("#day-0").text(data.list[0].dt_txt);
+    // $("#temp-0").text("Temp: " + data.list[0].main.temp + " Fahrenheit");
+    // $("#wind-speed-0").text("Wind Speed: " + data.list[0].wind.speed + " MPH");
+    // $("#hum-0").text("Humidity: " + data.list[0].main.humidity + " %");
     
+    for (var i = 0; i < data.list.lenght; i++) {
+        // var weatherTmr = {
+        //     date = 
+        //     temp = 
+        //     wind_speed =
+        //     humidity =
+        // }
+        $(`#day-{i}`).text(data.list[i].dt_txt);
+        $(`#temp-{i}`).text("Temp: " + data.list[i].main.temp + " Fahrenheit");
+        $(`#wind-speed-{i}`).text("Wind Speed: " + data.list[i].wind.speed + " MPH");
+        $(`#hum-{i}`).text("Humidity: " + data.list[i].main.humidity + " %");
+    }
+}
 
-    // for (var i = 0; i < 5; i++) {
     //     var weatherTmr = {
     //         date: dayjs().format("MM/DD/YYY"),
     //         temperature: data.list.main.temp,
@@ -85,7 +95,7 @@ function renderFutureWeather(data) {
     //     Selector = "#hum-" + i
     //     $(Selector).text ("Humidity: " + weatherTmr.humidity + " %");
     // }
-}
+
 
 // Submit button 
 $("#search-button").on("click", function (e) {
@@ -93,5 +103,6 @@ $("#search-button").on("click", function (e) {
     getLatLon();
     getForecast();
     $(".forecast-panel").addClass("visible");
-})
+    $(".current-conditions-panel").addClass("visible");
+});
 

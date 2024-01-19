@@ -48,3 +48,7 @@ section {
     padding-top: 50px;
     visibility: hidden;
 }
+.current-conditions-panel {
+    border-style: solid;
+    visibility: hidden;
+}
