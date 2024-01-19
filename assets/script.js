@@ -57,45 +57,21 @@ function renderCurrentWeather(data) {
 
 // Render Future Weather details for 5 day Forecast onto the page 
 function renderFutureWeather(data) {
-    console.log(data);
-
-    // $("#img-0").src (data.list[0].weather[0]);
-    // $("#day-0").text(data.list[0].dt_txt);
-    // $("#temp-0").text("Temp: " + data.list[0].main.temp + " Fahrenheit");
-    // $("#wind-speed-0").text("Wind Speed: " + data.list[0].wind.speed + " MPH");
-    // $("#hum-0").text("Humidity: " + data.list[0].main.humidity + " %");
-    
-    for (var i = 0; i < data.list.lenght; i++) {
-        // var weatherTmr = {
-        //     date = 
-        //     temp = 
-        //     wind_speed =
-        //     humidity =
-        // }
-        $(`#day-{i}`).text(data.list[i].dt_txt);
-        $(`#temp-{i}`).text("Temp: " + data.list[i].main.temp + " Fahrenheit");
-        $(`#wind-speed-{i}`).text("Wind Speed: " + data.list[i].wind.speed + " MPH");
-        $(`#hum-{i}`).text("Humidity: " + data.list[i].main.humidity + " %");
+console.log(data);
+    for (var i = 0; i < data.list.length; i++) {
+        $(`#day-${i}`).text(data.list[i].dt_txt);
+        // $(`#img-${i}`).
+        $(`#temp-${i}`).text("Temp: " + data.list[i].main.temp + " Fahrenheit");
+        $(`#wind-speed-${i}`).text("Wind Speed: " + data.list[i].wind.speed + " MPH");
+        $(`#hum-${i}`).text("Humidity: " + data.list[i].main.humidity + " %");
     }
 }
 
-    //     var weatherTmr = {
-    //         date: dayjs().format("MM/DD/YYY"),
-    //         temperature: data.list.main.temp,
-    //         wind_speed: data.wind.speed,
-    //         humidity: data.main.humidity
 
-    //     }
-    //     var Selector = "#day-" + i;
-    //     $(Selector).text (weatherTmr.date);
-    //     Selector = "#temp-" + i
-    //     $(Selector).text ("Temp: " + weatherTmr.temp + " Fahrenheit");
-    //     Selector = "#wind-speed-" + i
-    //     $(Selector).text ("Wind Speed: " + weatherTmr.wind_speed + " MPH");
-    //     Selector = "#hum-" + i
-    //     $(Selector).text ("Humidity: " + weatherTmr.humidity + " %");
-    // }
-
+function cityLists() {
+    $("<ul>");
+    $("#city-list").append(cityName).val;
+}
 
 // Submit button 
 $("#search-button").on("click", function (e) {
@@ -104,5 +80,9 @@ $("#search-button").on("click", function (e) {
     getForecast();
     $(".forecast-panel").addClass("visible");
     $(".current-conditions-panel").addClass("visible");
+
+    cityLists();
 });
+
+
 
