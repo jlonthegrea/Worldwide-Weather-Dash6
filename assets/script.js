@@ -48,7 +48,8 @@ function getForecast() {
 // Render Weather details onto the page 
 function renderCurrentWeather(data) {
 
-    $("#city-name").text(cityName).val + dayjs().format("MM/DD/YYYY");
+    $("#city-name").text(cityName).val 
+    $("#date-now").text (dayjs().format("MM/DD/YYYY"));
     $("#temperature").text("Temp: " + data.main.temp + " Fahrenheit");
     $("#wind-speed").text("Wind Speed: " + data.wind.speed + " MPH");
     $("#humidity").text("Humidity: " + data.main.humidity + " %");
@@ -60,7 +61,7 @@ function renderFutureWeather(data) {
 console.log(data);
     for (var i = 0; i < data.list.length; i++) {
         $(`#day-${i}`).text(data.list[i].dt_txt);
-        // $(`#img-${i}`).
+        // $(`#img-${i}`). (data.list[i].weather[0].icon)
         $(`#temp-${i}`).text("Temp: " + data.list[i].main.temp + " Fahrenheit");
         $(`#wind-speed-${i}`).text("Wind Speed: " + data.list[i].wind.speed + " MPH");
         $(`#hum-${i}`).text("Humidity: " + data.list[i].main.humidity + " %");
@@ -69,8 +70,7 @@ console.log(data);
 
 
 function cityLists() {
-    $("<ul>");
-    $("#city-list").append(cityName).val;
+    $("#city-list").append('<button type="button" class="list-group-item city-name">' + cityName);
 }
 
 // Submit button 
