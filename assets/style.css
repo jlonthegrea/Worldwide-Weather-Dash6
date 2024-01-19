@@ -29,7 +29,7 @@ section {
     text-align: center;
 }
 .card-header {
-    background-color: grey;
+    background-color: blue;
 }
 .container{
     display: inline;
@@ -46,4 +46,5 @@ section {
 }
 .forecast-panel {
     padding-top: 50px;
+    visibility: hidden;
 }
