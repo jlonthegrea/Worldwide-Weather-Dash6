@@ -66,11 +66,11 @@ function renderCurrentWeather(data) {
 function renderFutureWeather(data) {
     var iconUrl = "https://openweathermap.org/img/w/"
 
-    var forecast = data.list.filter((forecast) => {
-        if(forecast.dt_txt.includes("03:00:00")
-        )
-    })
-} 
+    // var forecast = data.list.filter((forecast) => {
+    //     if(forecast.dt_txt.includes("03:00:00")
+    //     )
+    // })
+
 
 for (var i = 0; i < data.list.length; i++) {
     const formattedDate = dayjs(01-20-2024).format('MM/DD/YYYY');
@@ -80,7 +80,7 @@ for (var i = 0; i < data.list.length; i++) {
     $(`#temp-${i}`).text("Temp: " + data.list[i].main.temp + " Fahrenheit");
     $(`#wind-speed-${i}`).text("Wind Speed: " + data.list[i].wind.speed + " MPH");
     $(`#hum-${i}`).text("Humidity: " + data.list[i].main.humidity + " %");
-}
+}}
     
 
 
