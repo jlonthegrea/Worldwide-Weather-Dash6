@@ -50,9 +50,6 @@ function getForecast(data) {
 
 // Render Weather details onto the page 
 function renderCurrentWeather(data) {
-
-
-
     $("#city-name").text(cityName).val
     $("#date-now").text(dayjs().format("MM/DD/YYYY"));
     $("#currentIcon").attr('src', `https://openweathermap.org/img/w/${data.weather[0].icon}.png`);
@@ -68,15 +65,16 @@ function renderFutureWeather(data) {
 
     var forecast = data.list.filter((forecastItem) => forecastItem.dt_txt.includes("03:00:00"));
 
-for (var i = 0; i < forecast.length; i++) {
-    const formattedDate = dayjs(forecast[i].dt_txt).format('MM/DD/YYYY');
+    for (var i = 0; i < forecast.length; i++) {
+        const formattedDate = dayjs(forecast[i].dt_txt).format('MM/DD/YYYY');
 
-    $(`#day-${i}`).text(formattedDate);
-    $(`#img-${i}`).attr('src', `https://openweathermap.org/img/w/${forecast[i].weather[0].icon}.png`);
-    $(`#temp-${i}`).text("Temp: " + forecast[i].main.temp + " Fahrenheit");
-    $(`#wind-speed-${i}`).text("Wind Speed: " + forecast[i].wind.speed + " MPH");
-    $(`#hum-${i}`).text("Humidity: " + forecast[i].main.humidity + " %");
-}}
+        $(`#day-${i}`).text(formattedDate);
+        $(`#img-${i}`).attr('src', `https://openweathermap.org/img/w/${forecast[i].weather[0].icon}.png`);
+        $(`#temp-${i}`).text("Temp: " + forecast[i].main.temp + " Fahrenheit");
+        $(`#wind-speed-${i}`).text("Wind Speed: " + forecast[i].wind.speed + " MPH");
+        $(`#hum-${i}`).text("Humidity: " + forecast[i].main.humidity + " %");
+    }
+}
 
 
 function cityLists() {
