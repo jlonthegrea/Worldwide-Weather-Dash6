@@ -30,6 +30,7 @@ section {
 }
 .card-header {
     background-color: blue;
+    text-align: center;
 }
 .container{
     display: inline;

@@ -31,12 +31,20 @@ function getCurrentWeather(lat, lon) {
 }
 
 // Getting Forecast for 5 day
-function getForecast() {
+function getForecast(data) {
 
+    
     const apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&units=imperial&appid=2ae0fed7d9cace10869d3b92643028e3";
+
+    // const filtered =
+   
+
+
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
+                // console.log(data);
+    
                 renderFutureWeather(data);
             })
         }
@@ -47,7 +55,7 @@ function getForecast() {
 
 // Render Weather details onto the page 
 function renderCurrentWeather(data) {
-    console.log(data);
+    
 
 
     $("#city-name").text(cityName).val 
@@ -61,12 +69,12 @@ function renderCurrentWeather(data) {
 
 // Render Future Weather details for 5 day Forecast onto the page 
 function renderFutureWeather(data) {
-// console.log(data);
 
 var iconUrl = "https://openweathermap.org/img/w/"
+var formattedDate = dayjs(2024-01-20).format('MM/DD/YYYY')
 
     for (var i = 0; i < data.list.length; i++) {
-        $(`#day-${i}`).text(data.list[i].dt_txt);
+        $(`#day-${i}`).text(formattedDate);
         $(`#img-${i}`).attr('src', `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`);
         $(`#temp-${i}`).text("Temp: " + data.list[i].main.temp + " Fahrenheit");
         $(`#wind-speed-${i}`).text("Wind Speed: " + data.list[i].wind.speed + " MPH");
