@@ -66,22 +66,17 @@ function renderCurrentWeather(data) {
 function renderFutureWeather(data) {
     var iconUrl = "https://openweathermap.org/img/w/"
 
-    // var forecast = data.list.filter((forecast) => {
-    //     if(forecast.dt_txt.includes("03:00:00")
-    //     )
-    // })
+    var forecast = data.list.filter((forecastItem) => forecastItem.dt_txt.includes("03:00:00"));
 
-
-for (var i = 0; i < data.list.length; i++) {
-    const formattedDate = dayjs(01-20-2024).format('MM/DD/YYYY');
+for (var i = 0; i < forecast.length; i++) {
+    const formattedDate = dayjs(forecast[i].dt_txt).format('MM/DD/YYYY');
 
     $(`#day-${i}`).text(formattedDate);
-    $(`#img-${i}`).attr('src', `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`);
-    $(`#temp-${i}`).text("Temp: " + data.list[i].main.temp + " Fahrenheit");
-    $(`#wind-speed-${i}`).text("Wind Speed: " + data.list[i].wind.speed + " MPH");
-    $(`#hum-${i}`).text("Humidity: " + data.list[i].main.humidity + " %");
+    $(`#img-${i}`).attr('src', `https://openweathermap.org/img/w/${forecast[i].weather[0].icon}.png`);
+    $(`#temp-${i}`).text("Temp: " + forecast[i].main.temp + " Fahrenheit");
+    $(`#wind-speed-${i}`).text("Wind Speed: " + forecast[i].wind.speed + " MPH");
+    $(`#hum-${i}`).text("Humidity: " + forecast[i].main.humidity + " %");
 }}
-    
 
 
 function cityLists() {
