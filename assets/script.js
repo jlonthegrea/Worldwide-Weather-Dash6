@@ -44,9 +44,22 @@ function getForecast(data) {
             })
         }
     })
-
-
 }
+
+
+// Get previous input
+function getPreviousInput(data) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${APIkey}`
+    fetch(apiUrl).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                renderCurrentWeather(data);
+            })
+        }
+    })
+}
+
+
 
 // Render Weather details onto the page 
 function renderCurrentWeather(data) {
@@ -93,4 +106,7 @@ $("#search-button").on("click", function (e) {
 });
 
 
-
+$(".city-list-box").on("click", "#city-name", function(e) {
+    e.preventDefault();
+    getPreviousInput();
+})
