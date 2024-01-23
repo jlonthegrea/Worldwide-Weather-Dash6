@@ -103,10 +103,24 @@ $("#search-button").on("click", function (e) {
     $(".current-conditions-panel").addClass("visible");
 
     cityLists();
+
+    localStorage.setItem("city", cityName);
+
 });
 
-
-$(".city-list-box").on("click", "#city-name", function(e) {
+$(".city-list").on("click", function(e) {
     e.preventDefault();
-    getPreviousInput();
+    getPreviousCity();
 })
+
+
+function getPreviousCity() {
+    localStorage.getItem("city");
+
+    getCurrentWeather();
+}
+
+
+
+
+
