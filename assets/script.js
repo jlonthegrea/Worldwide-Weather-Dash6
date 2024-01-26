@@ -1,10 +1,11 @@
 const APIkey = "2ae0fed7d9cace10869d3b92643028e3";
 var cityName;
+var cityArray = [];
 
 // Getting LAT&LON
 function getLatLon() {
     cityName = $('#cityName')[0].value;
-
+    saveCity(cityName);
     const apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&units=imperial&appid=2ae0fed7d9cace10869d3b92643028e3"
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
@@ -24,6 +25,7 @@ function getCurrentWeather(lat, lon) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
+        
                 renderCurrentWeather(data);
             })
         }
@@ -38,28 +40,11 @@ function getForecast(data) {
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                // console.log(data);
-
                 renderFutureWeather(data);
             })
         }
     })
 }
-
-
-// Get previous input
-function getPreviousInput(data) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${APIkey}`
-    fetch(apiUrl).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (data) {
-                renderCurrentWeather(data);
-            })
-        }
-    })
-}
-
-
 
 // Render Weather details onto the page 
 function renderCurrentWeather(data) {
@@ -89,11 +74,6 @@ function renderFutureWeather(data) {
     }
 }
 
-
-function cityLists() {
-    $("#city-list").append('<button type="button" class="list-group-item city-name">' + cityName);
-}
-
 // Submit button 
 $("#search-button").on("click", function (e) {
     e.preventDefault();
@@ -101,26 +81,50 @@ $("#search-button").on("click", function (e) {
     getForecast();
     $(".forecast-panel").addClass("visible");
     $(".current-conditions-panel").addClass("visible");
-
-    cityLists();
-
-    localStorage.setItem("city", cityName);
-
 });
 
-$(".city-list").on("click", function(e) {
-    e.preventDefault();
-    getPreviousCity();
-})
-
-
-function getPreviousCity() {
-    localStorage.getItem("city");
-
-    getCurrentWeather();
+function saveCity(city) {
+    if(cityArray.indexOf(city) !== -1){
+        return;
+    }
+    cityArray.push(city)
+    localStorage.setItem("search-history", JSON.stringify(cityArray))
+    update();
 }
 
+function update() {
+    var cityHistory = localStorage.getItem("search-history")
+    if(cityHistory){
+        cityArray = JSON.parse(cityHistory)
+        document.querySelector("#city-list").innerHTML = ""
+        for(var i = cityArray.length -1; i >= 0; i--){
+                console.log(cityArray[i]);
+            var btn = document.createElement("button")
+            btn.setAttribute("class", "historyBtn")
+            btn.textContent = cityArray[i]
+            document.querySelector("#city-list").append(btn)
+        }
+    }
+}
 
+update();
 
-
+document.querySelector("#city-list").addEventListener("click", function(e){
+    e.preventDefault();
+    if(e.target.matches(".historyBtn")) {
+        cityName = e.target.textContent
+        console.log(cityName);
+        const apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&units=imperial&appid=2ae0fed7d9cace10869d3b92643028e3"
+        fetch(apiUrl).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    $(".forecast-panel").addClass("visible");
+                    $(".current-conditions-panel").addClass("visible");
+                    getCurrentWeather(data[0].lat, data[0].lon);
+                    getForecast();
+                })
+            }
+        })
+    }
+})
 
