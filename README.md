@@ -25,6 +25,8 @@ THEN I am again presented with current and future conditions for that city
 
 ### Screenshot
 
+![Alt text](<Weather Dashboard.png>)
 
 ### Deployment
 
+https://jlonthegrea.github.io/Worldwide-Weather-Dash6/
