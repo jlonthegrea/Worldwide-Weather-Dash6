@@ -6,7 +6,7 @@ var cityArray = [];
 function getLatLon() {
     cityName = $('#cityName')[0].value;
     saveCity(cityName);
-    const apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&units=imperial&appid=2ae0fed7d9cace10869d3b92643028e3"
+    const apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&units=imperial&appid=2ae0fed7d9cace10869d3b92643028e3"
     fetch(apiUrl).then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
@@ -114,7 +114,7 @@ document.querySelector("#city-list").addEventListener("click", function(e){
     if(e.target.matches(".historyBtn")) {
         cityName = e.target.textContent
         console.log(cityName);
-        const apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&units=imperial&appid=2ae0fed7d9cace10869d3b92643028e3"
+        const apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&units=imperial&appid=2ae0fed7d9cace10869d3b92643028e3"
         fetch(apiUrl).then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
